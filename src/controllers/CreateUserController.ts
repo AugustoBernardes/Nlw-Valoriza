@@ -26,3 +26,5 @@ class CreateUserController{
         
     }
 }
+
+export { CreateUserController }
