@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const newUserValidation = data => {
+const NewUserValidation = data => {
     const schema = Joi.object({
         name:Joi.string().trim().required(),
         email:Joi.string().trim().email().required(),
@@ -9,4 +9,4 @@ const newUserValidation = data => {
     return schema.validate(data)
 }
 
-module.exports = { newUserValidation }
+export default NewUserValidation
