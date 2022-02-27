@@ -4,24 +4,33 @@ import  NewUserValidation from "../services/validation/NewUserValidation"
 
 class CreateUserController{
     async handle(req:Request, res:Response){
-
-        try {
-            let data = req.body
-            const { error } = NewUserValidation(data)
-
-            const createUserService = new CreateUserService();
-
-            const user = await createUserService.execute({name:data.name,email:data.email,admin:data.admin})
-
-            res.status(200),
-            res.json(user)
-        } catch (error) {
+        const data = NewUserValidation(req.body)
+    
+        if(data.error){
             res.status(400),
             res.json({
                 status:400,
-                message:error.message
+                message:data.error.message
             })
+        }else{
+            try {
+                
+    
+                const createUserService = new CreateUserService();
+    
+                const user = await createUserService.execute({name:data.value.name,email:data.value.email,admin:data.value.admin})
+    
+                res.status(200),
+                res.json(user)
+            } catch (error) {
+                res.status(400),
+                res.json({
+                    status:400,
+                    message:error.message
+                })
+            }
         }
+        
        
         
     }

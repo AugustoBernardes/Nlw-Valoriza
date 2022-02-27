@@ -12,7 +12,7 @@ export class Users {
     @Column()
     email:string;
 
-    @Column()
+    @Column('boolean', {default: false})
     admin:boolean;
 
     @CreateDateColumn()
