@@ -1,5 +1,4 @@
 import { UsersRepositories } from "../repositories/UsersRepositories"
-import  NewUserValidation from "./validation/NewUserValidation"
 import { getCustomRepository } from "typeorm"
 
 interface ICreateUser{
@@ -33,4 +32,4 @@ class CreateUserService{
     }
 }
 
-module.exports = { CreateUserService  }
+export { CreateUserService  }
