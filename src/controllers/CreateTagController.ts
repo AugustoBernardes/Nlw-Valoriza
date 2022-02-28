@@ -3,7 +3,7 @@ import { CreateTagService } from "../services/CreateTagService"
 import { NewTagValidation } from "../services/validation/TagValidation";
 
 
-class NewTagController{
+class CreateTagController{
     async handle(req: Request, res: Response){
         const data = NewTagValidation(req.body)
 
@@ -25,3 +25,5 @@ class NewTagController{
         }
     }
 }
+
+export { CreateTagController }
