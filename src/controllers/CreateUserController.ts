@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreateUserService } from "../services/CreateUserService"
-import  NewUserValidation from "../services/validation/NewUserValidation"
+import { NewUserValidation } from "../services/validation/UserValidation"
 
 class CreateUserController{
     async handle(req:Request, res:Response){

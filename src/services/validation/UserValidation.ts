@@ -10,4 +10,4 @@ const NewUserValidation = data => {
     return schema.validate(data)
 }
 
-export default NewUserValidation
+export  {NewUserValidation}
