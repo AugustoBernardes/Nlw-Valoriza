@@ -1,10 +1,12 @@
-import "reflect-metadata";
 import { Request,Response, NextFunction } from "express";
 import bodyParser from "body-parser";
-import express from "express"
 import "express-async-errors" 
+import express from "express"
+import "reflect-metadata";
+
 
 import { userRouter } from "./routes/userRoutes"
+import { tagRouter } from "./routes/tagsRoute"
 
 require('dotenv').config()
 
@@ -16,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/users',userRouter)
+app.use('/tags',tagRouter)
 
 app.use((error:Error, req:Request, res:Response, next:NextFunction) => {
     if(error instanceof Error){
