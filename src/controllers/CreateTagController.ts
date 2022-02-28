@@ -13,6 +13,15 @@ class NewTagController{
                 status:400,
                 message:data.error.message
             })
+        }else{
+            const createTagService = new CreateTagService();
+
+            let { name } = data.value;
+
+            const tag = await createTagService.execute({ name })
+
+            res.status(200),
+            res.json(tag)
         }
     }
 }
