@@ -13,26 +13,15 @@ class CreateUserController{
                 message:data.error.message
             })
         }else{
-            try {
-                
-                let { email,name,admin } = data.value
-                const createUserService = new CreateUserService();
+             
+            let { email,name,admin } = data.value
+            const createUserService = new CreateUserService();
     
-                const user = await createUserService.execute({ name,email,admin })
+            const user = await createUserService.execute({ name,email,admin })
     
-                res.status(200),
-                res.json(user)
-            } catch (error) {
-                res.status(400),
-                res.json({
-                    status:400,
-                    message:error.message
-                })
-            }
-        }
-        
-       
-        
+            res.status(200),
+            res.json(user)
+        }     
     }
 }
 
