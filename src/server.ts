@@ -13,5 +13,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/users',userRouter)
 
-app.listen(3000, () => console.log("Server is running!"))
+app.listen(process.env.PORT, () => console.log(`Server is running on Port: ${process.env.PORT}!`))
 

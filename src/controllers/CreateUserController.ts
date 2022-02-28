@@ -15,10 +15,10 @@ class CreateUserController{
         }else{
             try {
                 
-    
+                let { email,name,admin } = data.value
                 const createUserService = new CreateUserService();
     
-                const user = await createUserService.execute({name:data.value.name,email:data.value.email,admin:data.value.admin})
+                const user = await createUserService.execute({ name,email,admin })
     
                 res.status(200),
                 res.json(user)
