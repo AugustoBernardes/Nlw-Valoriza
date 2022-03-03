@@ -1,7 +1,7 @@
 import { Request,Response, NextFunction } from "express";
 import bodyParser from "body-parser";
-import "express-async-errors" 
 import express from "express"
+import "express-async-errors" 
 import "reflect-metadata";
 
 import { userRouter } from "./routes/userRoutes"
