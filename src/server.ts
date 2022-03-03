@@ -4,12 +4,12 @@ import "express-async-errors"
 import express from "express"
 import "reflect-metadata";
 
-
 import { userRouter } from "./routes/userRoutes"
 import { tagRouter } from "./routes/tagsRoute"
 
 require('dotenv').config()
 
+// Importing Data Base
 import "./database"
 
 const app = express();
@@ -17,9 +17,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Routes
 app.use('/users',userRouter)
 app.use('/tags',tagRouter)
 
+// Treating global errors
 app.use((error:Error, req:Request, res:Response, next:NextFunction) => {
     if(error instanceof Error){
         return (
@@ -41,5 +43,6 @@ app.use((error:Error, req:Request, res:Response, next:NextFunction) => {
 
 })
 
+// Running server
 app.listen(process.env.PORT, () => console.log(`Server is running on Port: ${process.env.PORT}!`))
 
