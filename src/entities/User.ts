@@ -12,6 +12,9 @@ export class Users {
     @Column()
     email:string;
 
+    @Column()
+    password:string;
+
     @Column('boolean', {default: false})
     admin:boolean;
 
