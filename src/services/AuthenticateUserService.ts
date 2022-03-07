@@ -2,6 +2,7 @@ import { UsersRepositories } from "../repositories/UsersRepositories"
 import { getCustomRepository } from "typeorm"
 import { sign } from "jsonwebtoken"
 import { compare } from "bcryptjs"
+require('dotenv').config()
 
 const JWT_SECRET = process.env.JWT_SECRET
 
@@ -39,7 +40,10 @@ class AuthenticateUserService{
             expiresIn:"1d"
         })
 
-        return token
+
+        return ({
+            token:token,
+        })
     }
 
 }
