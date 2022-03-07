@@ -1,6 +1,6 @@
 import { UsersRepositories } from "../repositories/UsersRepositories"
 import { getCustomRepository } from "typeorm"
-import bcrypt from "bcrypt"
+import { hash } from "bcryptjs"
 
 interface ICreateUser{
     name:string,
@@ -21,17 +21,28 @@ class CreateUserService{
         if(userAlreadyExists){
             throw new Error("User already exists!")
         }else{
+
+            // Encrypting password
+            const password_hash = await hash(password,8)
+
             const user = usersRepositories.create({
                 name,
                 email,
-                password,
+                password:password_hash,
                 admin
                 
             })
 
             const savedUser = await usersRepositories.save(user)
 
-            return savedUser
+            // Returning user without password 
+            return ({
+                name:savedUser.name,
+                email:savedUser.email,
+                admin:savedUser.admin,
+                created_at:savedUser.created_at,
+                updated_at:savedUser.updated_at
+            })
         }
     }
 }
