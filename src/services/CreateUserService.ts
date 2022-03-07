@@ -11,21 +11,21 @@ interface ICreateUser{
 
 class CreateUserService{
     async execute({ name,email,password,admin }: ICreateUser){
-        const usersRepositories = getCustomRepository(UsersRepositories);
+        const users_repositories = getCustomRepository(UsersRepositories);
 
 
-        const userAlreadyExists = await usersRepositories.findOne({
+        const user_already_exists = await users_repositories.findOne({
             email
         })
 
-        if(userAlreadyExists){
+        if(user_already_exists){
             throw new Error("User already exists!")
         }else{
 
             // Encrypting password
             const password_hash = await hash(password,8)
 
-            const user = usersRepositories.create({
+            const user = users_repositories.create({
                 name,
                 email,
                 password:password_hash,
@@ -33,7 +33,7 @@ class CreateUserService{
                 
             })
 
-            const savedUser = await usersRepositories.save(user)
+            const savedUser = await users_repositories.save(user)
 
             // Returning user without password 
             return ({
