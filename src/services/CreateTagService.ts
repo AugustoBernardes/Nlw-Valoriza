@@ -7,18 +7,18 @@ interface ICreateTag{
 
 class CreateTagService{
     async execute({ name }: ICreateTag){
-        const tagsRepositories = getCustomRepository(TagsRepositories)
+        const tags_repositories = getCustomRepository(TagsRepositories)
 
-        const tagAlreadyExists = await tagsRepositories.findOne({ name })
+        const tagAlreadyExists = await tags_repositories.findOne({ name })
 
         if(tagAlreadyExists){
             throw new Error("Tag already exists!")
         }else{
-            const tag = tagsRepositories.create({
+            const tag = tags_repositories.create({
                 name
             })
 
-            const savedTag = await tagsRepositories.save(tag)
+            const savedTag = await tags_repositories.save(tag)
 
             return savedTag
         }

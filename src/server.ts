@@ -6,6 +6,7 @@ import "reflect-metadata";
 
 import { userRouter } from "./routes/userRoutes"
 import { tagRouter } from "./routes/tagsRoute"
+import { complimentsRouter } from "./routes/complimentRoute"
 
 require('dotenv').config()
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Routes
 app.use('/users',userRouter)
 app.use('/tags',tagRouter)
+app.use('/compliments',complimentsRouter)
 
 // Treating global errors
 app.use((error:Error, req:Request, res:Response, next:NextFunction) => {
