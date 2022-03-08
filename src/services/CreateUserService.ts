@@ -13,7 +13,7 @@ class CreateUserService{
     async execute({ name,email,password,admin }: ICreateUser){
         const users_repositories = getCustomRepository(UsersRepositories);
 
-
+        // Validate if user already exist
         const user_already_exists = await users_repositories.findOne({
             email
         })

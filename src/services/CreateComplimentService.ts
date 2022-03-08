@@ -21,7 +21,7 @@ class CreateComplimentService{
             throw new Error("Incorrect User Receiver!");
         }
 
-        // Validating if the sender and receiver users exists
+        // Validating receiver user
         const receiver_user_exists = await users_repositories.findOne({
             id:user_receiver
         })
@@ -30,6 +30,7 @@ class CreateComplimentService{
             throw new Error("User Receiver does not exists!");
         }
 
+        // Validating Tag
         const tag_exists = await tags_repositories.findOne({
             id:tag_id
         })
@@ -38,6 +39,7 @@ class CreateComplimentService{
             throw new Error("Tag does not exists!");
         }
 
+        // Saving compliment
         const compliment =  compliments_repostories.create({
             tag_id,
             user_receiver,
