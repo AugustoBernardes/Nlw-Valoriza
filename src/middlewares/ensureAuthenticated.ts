@@ -25,15 +25,23 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
         )
     }
 
+    // Split the baerer token to get only the value
     const [,token] = authToken.split(" ")
 
    
     try {
         const { sub } = verify(token,JWT_SECRET ) as Ipayload
+
+        // Validating if the user is on DataBase
+        const user = await users_repositories.findOne({id:sub});
+
+        if(!user){
+            return res.status(401).json({
+                message:"Unauthorized token!"
+            })
+        }
         
         req.user_id = sub
-
-
         return next();
     } catch (error) {
         return res.status(401).json({
