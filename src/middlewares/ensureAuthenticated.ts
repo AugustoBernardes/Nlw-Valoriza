@@ -1,4 +1,6 @@
 import { Request,Response, NextFunction } from "express";
+import { UsersRepositories } from "../repositories/UsersRepositories"
+import { getCustomRepository } from "typeorm"
 import { verify } from "jsonwebtoken";
 require('dotenv').config()
 
@@ -8,7 +10,8 @@ interface Ipayload{
     sub:string
 }
 
-export function ensureAuthenticated(req: Request, res: Response, next: NextFunction){
+export async function ensureAuthenticated(req: Request, res: Response, next: NextFunction){
+    const users_repositories = getCustomRepository(UsersRepositories);
 
     // Receive token 
     const authToken = req.headers.authorization
@@ -29,6 +32,7 @@ export function ensureAuthenticated(req: Request, res: Response, next: NextFunct
         const { sub } = verify(token,JWT_SECRET ) as Ipayload
         
         req.user_id = sub
+
 
         return next();
     } catch (error) {
