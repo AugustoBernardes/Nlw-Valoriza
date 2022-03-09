@@ -1,6 +1,4 @@
 import { ComplimentRepositories } from "../repositories/ComplimentsRepositories"
-import { UsersRepositories } from "../repositories/UsersRepositories"
-import { TagsRepositories } from "../repositories/TagsRepositories"
 import { getCustomRepository } from "typeorm"
 
 
@@ -15,7 +13,11 @@ class ListUserReceiverComplimentsService{
         const compliments_repostories = getCustomRepository(ComplimentRepositories);
 
         const compliments = await compliments_repostories.find({
-            user_receiver:user_id,
+            where:{
+                user_receiver:user_id,
+            },
+            relations:["userSender","userReceiver","tag"]
+           
         })
 
         return compliments
@@ -34,7 +36,10 @@ class ListUserSenderComplimentsService{
         const compliments_repostories = getCustomRepository(ComplimentRepositories);
 
         const compliments = await compliments_repostories.find({
-            user_sender:user_id,
+            where:{
+                user_sender:user_id,
+            },
+            relations:["userSender","userReceiver","tag"]
         })
 
         return compliments
