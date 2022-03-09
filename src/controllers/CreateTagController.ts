@@ -20,8 +20,7 @@ class CreateTagController{
 
             const tag = await createTagService.execute({ name })
 
-            res.status(200),
-            res.json(tag)
+            return (res.status(200),res.json(tag))
         }
     }
 }
