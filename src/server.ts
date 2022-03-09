@@ -23,7 +23,7 @@ app.use('/users',userRouter)
 app.use('/tags',tagRouter)
 app.use('/compliments',complimentsRouter)
 
-// Treating global errors
+// Treating global error
 app.use((error:Error, req:Request, res:Response, next:NextFunction) => {
     if(error instanceof Error){
         return (
