@@ -8,7 +8,7 @@ class ListUserService{
 
         const users = await users_repositories.find({})
 
-        return users
+        return classToPlain(users)
     }
 }
 
