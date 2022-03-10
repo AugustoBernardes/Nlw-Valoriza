@@ -4,11 +4,11 @@ import { getCustomRepository } from "typeorm"
 
 class ListUserService{
     async execute(){
-        const users_repositories = getCustomRepository(UsersRepositories)
+        const users_repositories = getCustomRepository(UsersRepositories);
 
-        const users = await users_repositories.find({})
+        const users = await users_repositories.find({});
 
-        return classToPlain(users)
+        return classToPlain(users);
     }
 }
 
